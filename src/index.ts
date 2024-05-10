@@ -1,11 +1,7 @@
 import { Elysia } from "elysia";
+import { USER_ROUTES } from "./users/routes.ts";
+import swagger from "@elysiajs/swagger";
 
-const users = new Elysia({ prefix: "/user" })
-  .post("/sign-in", () => "Sign in")
-  .post("/sign-up", () => "Sign up")
-  .post("/profile", () => "Profile");
+const app = new Elysia().use(swagger()).use(USER_ROUTES).listen(4500);
 
-new Elysia()
-  .use(users)
-  .get("/", () => "hello world")
-  .listen(3000);
+console.log(`App is running on port ${app.server?.port} 🦊`);
