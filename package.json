@@ -3,8 +3,6 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "db:drop": "drizzle-kit drop",
-    "db:view": "drizzle-kit studio",
     "dev": "bun --watch src/index.ts ",
     "db:migrate": "drizzle-kit migrate",
     "db:generate": "drizzle-kit generate",
@@ -12,7 +10,6 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "drizzle-kit": "^0.21.1",
     "prettier": "^3.2.5"
   },
   "peerDependencies": {
@@ -21,8 +18,8 @@
   "dependencies": {
     "@elysiajs/swagger": "^1.0.5",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.30.10",
     "elysia": "^1.0.17",
-    "postgres": "^3.4.4"
+    "postgres": "^3.4.4",
+    "sequelize": "^6.37.3"
   }
 }
