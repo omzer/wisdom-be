@@ -11,7 +11,7 @@ export const WisdomType = pgEnum('WisdomType', ['human', 'ai']);
 export const WisdomsTable = pgTable('wisdoms', {
     id: serial('id').primaryKey(),
     content: varchar('content').notNull(),
-    categories: integer('categories').array(),
+    categories: varchar('categories').array(),
     type: WisdomType('type').default('human'),
     userId: integer('userId')
         .references(() => UsersTable.id)
