@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
 import { Elysia } from 'elysia';
 import { defaultIDConfigs, idParamValidation, limitOffsetValidation } from '../common/configs.ts';
-import { createWisdom, updateWisdom, viewAll, viewWisdom } from './actions.ts';
-import { createWisdomValidation, updateWisdomValidation } from './actionsValidations.ts';
+import { createWisdom, generateWisdom, updateWisdom, viewAll, viewWisdom } from './actions.ts';
+import { createWisdomValidation, generateWisdomValidation, updateWisdomValidation } from './actionsValidations.ts';
 
 // Model
 export const wisdomModel = {
@@ -17,4 +17,5 @@ export const WISDOM_ROUTES = new Elysia(routeSettings)
     .get('/view/:id', viewWisdom, idParamValidation)
     .put('/delete/:id', updateWisdom, idParamValidation)
     .post('/create', createWisdom, createWisdomValidation)
-    .put('/update/:id', updateWisdom, updateWisdomValidation);
+    .put('/update/:id', updateWisdom, updateWisdomValidation)
+    .get('/generate', generateWisdom, generateWisdomValidation);

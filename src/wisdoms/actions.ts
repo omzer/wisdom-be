@@ -1,4 +1,5 @@
 import { db } from '../index.ts';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export const createWisdom = async ({ body, set }: any) => {
     const { content } = body;
@@ -29,4 +30,20 @@ export const viewAll = async ({ query }: any) => {
     const { limit, offset } = query;
     const wisdoms = await db.models.Wisdom.findAll({ limit, offset });
     return wisdoms.map(wisdom => wisdom.toJSON());
+};
+
+export const generateWisdom = async ({ query }: any) => {
+    const { topic } = query;
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY as string);
+    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const chat = model.startChat({
+        history: [
+            { role: 'user', parts: [{ text: 'I will send you topic, and you need to give me a wisdom about it' }] },
+            { role: 'user', parts: [{ text: 'I just want you to send the wisdom, nothing else' }] },
+            { role: 'user', parts: [{ text: 'If you cannot find sth on the web, make one up' }] },
+            { role: 'model', parts: [{ text: "Sounds great! let's do it!" }] },
+        ],
+    });
+    const result = await chat.sendMessage(topic);
+    return result.response.text();
 };
