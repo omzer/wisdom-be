@@ -1,3 +1,7 @@
 import { t } from 'elysia';
 
-export const signupUserValidation = { query: t.Object({ name: t.String(), password: t.String() }) };
+const stringWithMinValue = (value: number) => t.String({ minLength: value });
+
+export const signupUserValidation = {
+    query: t.Object({ name: stringWithMinValue(4), password: stringWithMinValue(8) }),
+};
