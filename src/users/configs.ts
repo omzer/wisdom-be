@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { Elysia } from 'elysia';
-import { signupUser } from './actions.ts';
-import { signupUserValidation } from './actionsValidations.ts';
+import { loginUser, signupUser } from './actions.ts';
+import { userAPIsValidation } from './actionsValidations.ts';
 import { defaultIDConfigs } from '../common/configs.ts';
 
 // Model
@@ -13,4 +13,6 @@ export const userModel = {
 
 // Routes
 const routeSettings = { prefix: '/user', detail: { tags: ['User management'] } };
-export const USER_ROUTES = new Elysia(routeSettings).post('/sign-up', signupUser, signupUserValidation);
+export const USER_ROUTES = new Elysia(routeSettings)
+    .post('/login', loginUser, userAPIsValidation)
+    .post('/sign-up', signupUser, userAPIsValidation);
