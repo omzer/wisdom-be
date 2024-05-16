@@ -17,5 +17,4 @@ export const WISDOM_ROUTES = new Elysia(routeSettings)
     .get('/view/:id', viewWisdom, idParamValidation)
     .put('/delete/:id', updateWisdom, idParamValidation)
     .post('/create', createWisdom, createWisdomValidation)
-    .put('/update/:id', updateWisdom, updateWisdomValidation)
-    .post('/view', 'View wisdom with its details');
+    .put('/update/:id', updateWisdom, updateWisdomValidation);
