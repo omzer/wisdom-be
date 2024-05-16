@@ -3,7 +3,7 @@ import { Sequelize } from 'sequelize';
 export const dbURL = () => process.env.DATABASE_URL as string;
 
 export const dbConnect = async () => {
-    const sequelize = new Sequelize(dbURL());
+    const sequelize = new Sequelize(dbURL(), { logging: console.log });
     try {
         await sequelize.authenticate();
         console.log(`Connection to (${sequelize.getDatabaseName()}) established successfully 🔥`);
