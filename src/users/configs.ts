@@ -7,8 +7,8 @@ import { defaultIDConfigs } from '../common/configs.ts';
 // Model
 export const userModel = {
     id: defaultIDConfigs,
-    name: { type: DataTypes.STRING, allowNull: false },
     password: { type: DataTypes.STRING, allowNull: false },
+    username: { type: DataTypes.STRING, unique: true, allowNull: false },
 };
 
 // Routes

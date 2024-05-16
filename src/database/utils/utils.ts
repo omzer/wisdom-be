@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
-import { userModel } from '../users/configs.ts';
-import { wisdomModel } from '../wisdoms/configs.ts';
-import { categoryModel } from '../category/configs.ts';
+import { wisdomModel } from '../../wisdoms/configs.ts';
+import { userModel } from '../../users/configs.ts';
+import { categoryModel } from '../../category/configs.ts';
 
 export const dbURL = () => process.env.DATABASE_URL as string;
 
