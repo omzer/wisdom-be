@@ -5,10 +5,20 @@ import { WISDOM_ROUTES } from './wisdoms/configs.ts';
 import { CATEGORY_ROUTES } from './category/configs.ts';
 import jwt from '@elysiajs/jwt';
 import { dbConnect } from './database/utils/utils.ts';
-import { JWTConfigs } from './common/utils.ts';
+import { JWTConfigs, onBeforeMiddleware } from './common/utils.ts';
 
 // Connect to the DB
 export const db = await dbConnect();
 
-// Serve APIs
-new Elysia().use(swagger()).use(USER_ROUTES).use(WISDOM_ROUTES).use(CATEGORY_ROUTES).use(jwt(JWTConfigs)).listen(4500);
+// Start the server
+new Elysia()
+    // Elysia settings
+    .use(swagger())
+    .onBeforeHandle(onBeforeMiddleware)
+    // API routes
+    .use(USER_ROUTES)
+    .use(WISDOM_ROUTES)
+    .use(CATEGORY_ROUTES)
+    .use(jwt(JWTConfigs))
+    // Server port
+    .listen(4500);
