@@ -1,15 +1,10 @@
 import { DataTypes } from 'sequelize';
 import { Elysia } from 'elysia';
+import { defaultIDConfigs } from '../common/configs.ts';
 
 // Model
 export const wisdomModel = {
-    id: {
-        unique: true,
-        allowNull: false,
-        primaryKey: true,
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-    },
+    id: defaultIDConfigs,
     content: { type: DataTypes.STRING, allowNull: false },
 };
 

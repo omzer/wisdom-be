@@ -2,16 +2,11 @@ import { DataTypes } from 'sequelize';
 import { Elysia } from 'elysia';
 import { signupUser } from './actions.ts';
 import { signupUserValidation } from './actionsValidations.ts';
+import { defaultIDConfigs } from '../common/configs.ts';
 
 // Model
 export const userModel = {
-    id: {
-        unique: true,
-        allowNull: false,
-        primaryKey: true,
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-    },
+    id: defaultIDConfigs,
     name: { type: DataTypes.STRING, allowNull: false },
     password: { type: DataTypes.STRING, allowNull: false },
 };
