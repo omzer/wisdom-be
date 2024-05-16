@@ -2,8 +2,8 @@ import { db } from '../index.ts';
 
 export const createWisdom = async ({ body, set }: any) => {
     const { content } = body;
-    const wisdom = await db.models.Wisdom.create({ content, authorId: set.userId });
-    return wisdom.toJSON();
+    await db.models.Wisdom.create({ content, authorId: set.userId });
+    set.status = 201;
 };
 
 export const viewWisdom = async ({ params, set }: any) => {
@@ -23,4 +23,10 @@ export const updateWisdom = async ({ params, body, set }: any) => {
     if (wisdom.authorId !== set.userId) return (set.status = 401);
 
     await wisdom.update({ content });
+};
+
+export const viewAll = async ({ query }: any) => {
+    const { limit, offset } = query;
+    const wisdoms = await db.models.Wisdom.findAll({ limit, offset });
+    return wisdoms.map(wisdom => wisdom.toJSON());
 };
