@@ -20,4 +20,4 @@ new Elysia()
     .use(CATEGORY_ROUTES)
     .use(jwt(JWTConfigs))
     // Server port
-    .listen(4500);
+    .listen(3000);
