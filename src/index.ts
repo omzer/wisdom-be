@@ -5,9 +5,10 @@ import { WISDOM_ROUTES } from './wisdoms/configs.ts';
 import { CATEGORY_ROUTES } from './category/configs.ts';
 import jwt from '@elysiajs/jwt';
 import { JWTConfigs, onBeforeMiddleware } from './common/utils.ts';
+import { dbConnect } from './database/utils/utils.ts';
 
 // Connect to the DB
-export const db = {};
+export const db = await dbConnect();
 
 // Start the server
 const app = new Elysia()
