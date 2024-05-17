@@ -7,7 +7,15 @@ export const dbURL = () => process.env.DATABASE_URL as string;
 
 export const dbConnect = async () => {
     // Connect to the DB
+    console.log('Here');
     const db = new Sequelize(dbURL(), { logging: console.log });
+
+    try {
+        console.log('authing the DB');
+        await db.authenticate();
+    } catch (error) {
+        console.log('failed to auth DB', error);
+    }
 
     // Define the models
     const user = db.define('User', userModel);
