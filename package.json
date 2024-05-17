@@ -6,7 +6,7 @@
     "dev": "bun --watch src/index.ts ",
     "db:migrate": "drizzle-kit migrate",
     "db:generate": "drizzle-kit generate",
-    "start": "NODE_ENV=production bun src/index.ts"
+    "start": "bun src/index.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
