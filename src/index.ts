@@ -21,3 +21,5 @@ new Elysia()
     .use(jwt(JWTConfigs))
     // Server port
     .listen(3000);
+
+console.log('App is running 🔥');
