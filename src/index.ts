@@ -10,16 +10,24 @@ import { JWTConfigs, onBeforeMiddleware } from './common/utils.ts';
 export const db = {};
 
 // Start the server
-new Elysia()
-    // Elysia settings
-    .use(swagger())
-    .onBeforeHandle(onBeforeMiddleware)
-    // API routes
-    .use(USER_ROUTES)
-    .use(WISDOM_ROUTES)
-    .use(CATEGORY_ROUTES)
-    .use(jwt(JWTConfigs))
-    // Server port
-    .listen(3000);
+// const app = new Elysia()
+//     // Elysia settings
+//     .use(swagger())
+//     .onBeforeHandle(onBeforeMiddleware)
+//     // API routes
+//     .use(USER_ROUTES)
+//     .use(WISDOM_ROUTES)
+//     .use(CATEGORY_ROUTES)
+//     .use(jwt(JWTConfigs))
+//     // Server port
+//     .listen(3000);
 
 console.log('App is running 🔥');
+
+Bun.serve({
+    hostname: '::',
+    port: process.env.PORT ?? 3000,
+    fetch(request) {
+        return new Response('Welcome to Bun!');
+    },
+});
