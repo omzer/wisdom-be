@@ -4,8 +4,6 @@
   "type": "module",
   "scripts": {
     "dev": "bun --watch src/index.ts ",
-    "db:migrate": "drizzle-kit migrate",
-    "db:generate": "drizzle-kit generate",
     "start": "bun run src/index.ts"
   },
   "devDependencies": {
