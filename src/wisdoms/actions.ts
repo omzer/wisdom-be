@@ -2,8 +2,11 @@ import { db } from '../index.ts';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export const createWisdom = async ({ body, set }: any) => {
-    const { content } = body;
-    await db.models.Wisdom.create({ content, authorId: set.userId });
+    const { content, categories } = body;
+    const wisdom = db.models.Wisdom.build({ content, authorId: set.userId });
+    // @ts-ignore
+    wisdom.addCategories(categories?.split(','));
+    await wisdom.save();
     return (set.status = 201);
 };
 
@@ -11,7 +14,10 @@ export const viewWisdom = async ({ params, set }: any) => {
     const { id } = params;
     const wisdom = await db.models.Wisdom.findOne({
         where: { id },
-        include: [{ model: db.models.User, attributes: { exclude: ['password'] } }],
+        include: [
+            { model: db.models.User, attributes: ['id', 'username'] },
+            { model: db.models.Category, attributes: ['title', 'id'], through: { attributes: [] } },
+        ],
     });
     return wisdom ? wisdom.toJSON() : (set.status = 404);
 };
