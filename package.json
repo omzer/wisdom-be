@@ -1,7 +1,7 @@
 {
   "name": "wisdom-be",
   "module": "index.ts",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "bun --watch src/index.ts ",
     "start": "bun run src/index.ts"
