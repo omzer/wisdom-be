@@ -2,6 +2,7 @@
   "development": {
     "username": "root",
     "password": null,
+    "port": "8080",
     "database": "wisdoms-be",
     "host": "127.0.0.1",
     "dialect": "postgres"
