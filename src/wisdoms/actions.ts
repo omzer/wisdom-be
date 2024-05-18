@@ -9,7 +9,10 @@ export const createWisdom = async ({ body, set }: any) => {
 
 export const viewWisdom = async ({ params, set }: any) => {
     const { id } = params;
-    const wisdom = await db.models.Wisdom.findOne({ where: { id }, include: 'User' });
+    const wisdom = await db.models.Wisdom.findOne({
+        where: { id },
+        include: [{ model: db.models.User, attributes: { exclude: ['password'] } }],
+    });
     return wisdom ? wisdom.toJSON() : (set.status = 404);
 };
 

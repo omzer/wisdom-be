@@ -10,13 +10,6 @@ export const dbConnect = async () => {
     console.log('Here');
     const db = new Sequelize(dbURL(), { logging: console.log });
 
-    try {
-        console.log('authing the DB');
-        await db.authenticate();
-    } catch (error) {
-        console.log('failed to auth DB', error);
-    }
-
     // Define the models
     const user = db.define('User', userModel);
     const wisdom = db.define('Wisdom', wisdomModel);
