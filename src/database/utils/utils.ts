@@ -5,10 +5,20 @@ import { categoryModel } from '../../category/configs.ts';
 
 export const dbURL = () => process.env.DATABASE_URL as string;
 
+const isDBAuthenticated = async (db: Sequelize) => {
+    try {
+        await db.authenticate();
+        console.log('💾 DB connected');
+        return true;
+    } catch (error: any) {
+        console.error('💾🔥 Error DB', error?.message);
+        return false;
+    }
+};
+
 export const dbConnect = async () => {
-    // Connect to the DB
-    console.log('Here');
     const db = new Sequelize(dbURL(), { logging: console.log });
+    if (!(await isDBAuthenticated(db))) return;
 
     // Define the models
     const user = db.define('User', userModel);
