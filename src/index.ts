@@ -23,12 +23,4 @@ const app = new Elysia()
     // Server port
     .listen(3000);
 
-const server = Bun.serve({
-    port: 3001,
-    fetch() {
-        return new Response('Welcome to Bun!');
-    },
-});
-
-console.log(`Bun server on localhost:${server.port}!`);
 console.log(`🦊 Elysia is running at on port ${app.server?.port}`);
