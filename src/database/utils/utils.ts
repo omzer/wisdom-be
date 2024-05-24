@@ -34,8 +34,5 @@ export const dbConnect = async () => {
     wisdom.belongsToMany(category, { through: 'WisdomCategories' });
     category.belongsToMany(wisdom, { through: 'WisdomCategories' });
 
-    // Sync DB with latest migrations
-    await db.sync();
-
     return db;
 };
