@@ -21,6 +21,6 @@ const app = new Elysia()
     .use(CATEGORY_ROUTES)
     .use(jwt(JWTConfigs))
     // Server port
-    .listen(8080);
+    .listen(3000);
 
 console.log(`🦊 Elysia is running at on port ${app.server?.port}`);
